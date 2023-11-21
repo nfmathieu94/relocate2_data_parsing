@@ -1,16 +1,16 @@
-# Summarizing RelocaTE2 Results
+## Summarizing RelocaTE2 Results
 
-** directories **
-'annotation_data' - for genomic features ('annotation_data/chrom_nums.csv' used to change chrom names)
-'data_from_lit' - has parental insertion information
-'relocate_summary_results' - Relocate2 results for each RIL (files were renamed)
-'scripts' - series of scripts used to transform relocate input
-
+**Directories:**
+- `annotation_data`: Contains genomic features (`annotation_data/chrom_nums.csv` is used to change chrom names).
+- `data_from_lit`: Holds parental insertion information.
+- `relocate_summary_results`: RelocaTE2 results for each RIL (files were renamed).
+- `scripts`: Includes a series of scripts used to transform RelocaTE2 input.
 
 ## Scripts
-'scripts/make_concat_table.py'
-- Reads in all RIL relocate2 results and creates one long table with selected columns
-- Chromosome names are changed and 'Chr_Start' column is made (join Chr and Start column)
-    * This column has all possible insertion sites in the sequenced RILs
 
+### `scripts/make_concat_table.py`
 
+- Reads in all RIL RelocaTE2 results and creates one long table with selected columns.
+- Chromosome names are changed, and a `Chr_Start` column is created (joining the `Chr` and `Start` columns).
+  - This column contains all possible insertion sites in the sequenced RILs.
+ 
