@@ -13,4 +13,16 @@
 - Reads in all RIL RelocaTE2 results and creates one long table with selected columns.
 - Chromosome names are changed, and a `Chr_Start` column is created (joining the `Chr` and `Start` columns).
   - This column contains all possible insertion sites in the sequenced RILs.
- 
+
+### `scripts/00_modify_parental_data.py`
+
+- Modifies parental Ping and Pong data.
+  - Reads in `parental_pings.csv` and `parental_pongs.csv`, subsets columns, and creats `Chrom_Start` column
+- Outputs new file (ex. `parent_ping_loc.tsv`), and this will be used when finding Ping locations in RIL populations.
+
+
+### `scripts/03_make_summary_table.py`
+
+- A goal is to create a summary file that has all possible locations (`Chrom_Start`), origin of insertion (de novo or which parent it came from),
+  type of insertion, and a presence/abscence table (1/0 for P/A).
+- Reads in processed data from scripts above, makes dictionaries (`lines : locations`), and compares locations between lines
