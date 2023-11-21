@@ -49,15 +49,22 @@ ril_concatenated_df[0] = ril_concatenated_df[0].apply(lambda x: replace_text(x, 
 
 ril_concatenated_df[0] = ril_concatenated_df[0].astype(str) + '_' + ril_concatenated_df[3].astype(str)
 
+# Might want to write the combined dataframe to a file 
+
+ril_concatenated_df.to_csv("../results/ril_concatenated_relocate_results.tsv", sep='\t', header=False)
+
+
 # Drop the original row (not working at the moment)
-ril_concatenated_df = ril_concatenated_df.drop(2)
+ril_concatenated_df = ril_concatenated_df.drop(3, axis=1)
 # Reset index
 ril_concatenated_df = ril_concatenated_df.reset_index(drop=True)
 
-ril_concatenated_df
+# Rename Columns
+ril_concatenated_df.columns = ["Chr_Start", "Line", "Start", "End", "Strand"]
 
-
-
-# Future work for this script
+# Subset Columns
+locAndLine_df = ril_concatenated_df[["Chr_Start", "Line"]]
+locAndLine_df.to_csv("../results/insertion_and_rils.tsv", sep='\t', header=True, index=False)
+#Future work for this script
 # - Remove hard coded paths and get paths from user from command line
 
