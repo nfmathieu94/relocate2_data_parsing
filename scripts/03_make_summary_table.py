@@ -26,6 +26,36 @@ rilToLoc = create_dict(path_to_ril_data)
 path_to_parental_ping = '../data_from_lit/parent_ping_loc.tsv'
 parentalToPing = create_dict(path_to_parental_ping)
 
+# Create Dictionary that has all parental insertions called from RelocaTE (combined Ping and mPing insertions???) 
+
+path_to_parental_relocate = '../data_from_lit/all_parental_insertions.tsv'
+partentalToRelocaTE = create_dict(path_to_parental_relocate)
+
+
+# Determining how many parental insertions are in RILs
+
+# Create list that has all locations from parents (just locations no parental details)
+# The list contains no repeats 
+parent_relocate_list = []
+for parent in partentalToRelocaTE:
+    for loc in partentalToRelocaTE[parent]:
+        if loc not in parent_relocate_list:
+            parent_relocate_list.append(loc)
+
+
+parent_relocate_list
+len(rilToLoc.values())
+rilToLoc
+
+
+n = 0
+for RIL in rilToLoc:
+    for loc in rilToLoc[RIL]:
+        if loc in parent_relocate_list:
+            n += 1
+
+print(n)
+
 # Create Dictionary parentalToPong (parent : Chrom_Start (pong))
 mpinglocations = dict()
 
