@@ -81,7 +81,7 @@ len(parental_ping_locations_set)
 
                ########## Sumamry So Far ##########
 
-# Looks like there are no shared Pings in the parental or RIL relocate results)
+# Looks like there are no shared pings in the parental relocate results and 15 ping locations in the RIL relocate results
 # Might be because specific coordinate calls are off?? 
 
 
@@ -105,16 +105,19 @@ for loc in ril_relocate_list:
 
 
 # Create binary data frame 
-binary_df = pd.DataFrame(binary_dict)
+binary_df = pd.DataFrame(binary_dict).set_index('RIL')
 print(binary_df)
 
+binary_df = binary_df.reset_index(drop=True)
+
+
 # Transpose the data frame
-binary_df_T = binary_df.T
+binary_df = binary_df.T
 
 # Write to file
-binary_df_T.to_csv("../results/ril_relocate_binary_table.tsv", sep='\t', index=False)
+binary_df.to_csv("../results/ril_relocate_binary_table.tsv", sep='\t', index=False)
 
-
+binary_df
 
 
 
