@@ -40,7 +40,12 @@ All scripts are ran within the `scripts` directory
 - The following command was used to get the origin frequency for the RIL insertions
 `cut -f 98 | sort | uniq -c`
 
-      8 A123
-  19871 de novo
-      2 EG4
-      1 Origin
+|   |      |
+|---|------|
+| 8 | A123 |
+| 19871 | de novo |
+| 2 | EG4 |
+| 1 | Origin |
+
+
+
