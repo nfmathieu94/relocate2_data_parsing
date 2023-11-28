@@ -27,3 +27,20 @@ All scripts are ran within the `scripts` directory
 - A goal is to create a summary file that has all possible locations (`Chrom_Start`), origin of insertion (de novo or which parent it came from),
   type of insertion, and a presence/abscence table (1/0 for P/A).
 - Reads in processed data from scripts above, makes dictionaries (`lines : locations`), and compares locations between lines
+
+
+## Summarizing
+
+### Reports from `03_make_summary_table.py` 
+- No ping locations (from literature) in parental relocate results
+- There are 15 ping locations (from literature) in the relocate results
+
+### Binary Data Frame with "Origin"
+- The origin column has information (A123, EG4, or de novo) depending on if the location is shared with a parental insertion previously called by relocate
+- The following command was used to get the origin frequency for the RIL insertions
+`cut -f 98 | sort | uniq -c`
+
+      8 A123
+  19871 de novo
+      2 EG4
+      1 Origin

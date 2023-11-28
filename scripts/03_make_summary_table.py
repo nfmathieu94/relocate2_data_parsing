@@ -73,9 +73,6 @@ total_common_locations_parental_ping_relocate = len(common_locations_parental_pi
 print(f'Total number of parental pings shared with parental relocate results: {total_common_locations_parental_ping_relocate}')
 
 
-len(parental_relocate_locations_set)
-len(parental_ping_locations_set)
-
 
 
 
@@ -98,6 +95,7 @@ for ril in ril_to_relocate:
         if loc not in ril_relocate_list:
             ril_relocate_list.append(loc)
 
+
 # Creating a binary dictionary where each 
 binary_dict = {'RIL': list(ril_to_relocate.keys())}
 for loc in ril_relocate_list:
@@ -108,18 +106,26 @@ for loc in ril_relocate_list:
 binary_df = pd.DataFrame(binary_dict).set_index('RIL')
 print(binary_df)
 
-binary_df = binary_df.reset_index(drop=True)
 
 
 # Transpose the data frame
 binary_df = binary_df.T
 
 # Write to file
-binary_df.to_csv("../results/ril_relocate_binary_table.tsv", sep='\t', index=False)
-
-binary_df
+binary_df.to_csv("../results/ril_relocate_binary_table.tsv", sep='\t')
 
 
+# Adding "Origin" column that gives information on whether the insertion came from a parent or is de novo 
+binary_df['Origin'] = 'de novo'
+
+# Iterate through the DataFrame and update "Origin" column
+for loc in binary_df.index:
+    for parent, locations in parental_to_relocate.items():
+        if loc in locations:
+            binary_df.at[loc, 'Origin'] = parent
+
+
+binary_df.to_csv("../results/binary_df_with_origin.tsv", sep='\t')
 
                ########## Testing / Brainstorming ##########
 
