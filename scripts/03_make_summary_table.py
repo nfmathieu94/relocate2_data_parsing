@@ -32,16 +32,26 @@ parental_to_ping = create_dict(path_to_parental_ping)
 parental_to_relocate = create_dict(path_to_parental_relocate)
 
 
-               ########## Finding Shared Ping locations (from literature) in RIL Relocate results ##########
+# Creating sets that will be used to compare insertion sites (will probably make function for this later)
 
-# Convert values to sets for both parental pings and RILs
+# Create set of Ping locations from Literature
 parental_ping_locations_set = set()
 for locations in parental_to_ping.values():
     parental_ping_locations_set.update(locations)
 
+# Create set of RIL insertions identified from Relocate
 ril_locations_set = set()
 for locations in ril_to_relocate.values():
     ril_locations_set.update(locations)
+
+# Create set of Parental insertions identified from Relocate 
+parental_relocate_locations_set = set()
+for locations in parental_to_relocate.values():
+    parental_relocate_locations_set.update(locations)
+
+
+               ########## Finding Shared Ping locations (from literature) in RIL Relocate results ##########
+
 
 # Find common locations between parental pings and RILs
 common_locations = parental_ping_locations_set & ril_locations_set
@@ -54,14 +64,6 @@ print(f'Total number of parental pings shared in RIL locations: {total_common_lo
 
                ########## Finding Shared Ping locations (from literature) in Parental (EG4 and A123) Relocate results ##########
 
-# Convert values to sets for both parental pings and parental relocate results
-parental_ping_locations_set = set()
-for locations in parental_to_ping.values():
-    parental_ping_locations_set.update(locations)
-
-parental_relocate_locations_set = set()
-for locations in parental_to_relocate.values():
-    parental_relocate_locations_set.update(locations)
 
 # Find common locations between parental pings and parental relocate results
 common_locations_parental_ping_relocate = parental_ping_locations_set & parental_relocate_locations_set
@@ -72,6 +74,20 @@ total_common_locations_parental_ping_relocate = len(common_locations_parental_pi
 
 print(f'Total number of parental pings shared with parental relocate results: {total_common_locations_parental_ping_relocate}')
 
+
+
+
+
+               ########## Finding Shared relocate locations between Parental (EG4 and A123) and RILs ##########
+
+
+# Find common locations between parental and RIL relocate results
+common_locations_relocate_parent_ril = parental_relocate_locations_set & ril_locations_set
+
+# Count the total number of common locations
+total_common_locations_relocate_parent_ril = len(common_locations_relocate_parent_ril)
+
+print(f'Total number of parental relocate insertions shared with RIL relocate insertions: {total_common_locations_relocate_parent_ril}')
 
 
 
