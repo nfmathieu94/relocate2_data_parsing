@@ -7,6 +7,7 @@
 - `scripts`: Includes a series of scripts used to transform RelocaTE2 input.
 
 ## Scripts
+All scripts are ran within the `scripts` directory
 
 ### `scripts/make_concat_table.py`
 
